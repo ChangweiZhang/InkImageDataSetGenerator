@@ -78,7 +78,7 @@
         </Grid>
         <StackPanel  Grid.Column="1" Grid.Row="1">
             <TextBlock Margin="20" Text="Image Output Folder:" FontSize="30"/>
-            <HyperlinkButton Foreground="SkyBlue" Margin="20" Content="{Binding ImageFolder}"  FontSize="24" />
+            <HyperlinkButton Command="{Binding OpenImageFolderCommand}" Foreground="SkyBlue" Margin="20" Content="{Binding ImageFolder}"  FontSize="24" />
         </StackPanel>
         <!--<Button Grid.Column="1" Grid.Row="1" Click="Button_Click">test</Button>
         <Button Grid.Column="1" VerticalAlignment="Bottom" Click="Button_Click_1">clear</Button>-->

@@ -6,6 +6,7 @@ using System.IO;
 using Windows.Graphics.Imaging;
 using Windows.Storage;
 using Windows.Storage.Streams;
+using Windows.System;
 using Windows.UI.Popups;
 using Windows.UI.Xaml.Controls;
 
@@ -94,6 +95,12 @@ namespace InkImageDataSetGenerator.ViewModels
         }
 
         public RelayCommand<InkCanvas> GenerateImageCommand => new RelayCommand<InkCanvas>(GenerateImage);
+        public RelayCommand OpenImageFolderCommand => new RelayCommand(OpenImageFolder);
+
+        private async void OpenImageFolder()
+        {
+            await Launcher.LaunchFolderPathAsync(ImageFolder);
+        }
 
         private async void GenerateImage(InkCanvas canvas)
         {
