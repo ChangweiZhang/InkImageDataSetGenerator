@@ -111,7 +111,7 @@ namespace InkImageDataSetGenerator.ViewModels
             {
                 var step = (_endAngle - _startAngle) / Amount;
                 var rootFolder = await KnownFolders.PicturesLibrary.CreateFolderAsync("InkDataSet", CreationCollisionOption.OpenIfExists);
-                ImageFolder = rootFolder.Path;
+               
                 StorageFolder labelFolder = null;
                 try
                 {
@@ -121,9 +121,10 @@ namespace InkImageDataSetGenerator.ViewModels
                 {
                     labelFolder = await rootFolder.CreateFolderAsync(Label);
                 }
+                ImageFolder = labelFolder.Path;
                 for (int i = 0; i < Amount; i++)
                 {
-                    var file = await labelFolder.CreateFileAsync($"{i}.jpg", CreationCollisionOption.GenerateUniqueName);
+                    var file = await labelFolder.CreateFileAsync($"{_startAngle + i * step}.jpg", CreationCollisionOption.GenerateUniqueName);
                     using (var fs = await file.OpenAsync(FileAccessMode.ReadWrite))
                     {
                         var img = Mat.FromStream(CurrentInkImage.AsStream(), ImreadModes.AnyColor);
